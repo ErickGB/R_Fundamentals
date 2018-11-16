@@ -4,7 +4,7 @@
 # Date: 02May2017
 # Tema 3: Carga y manipulacion de datos
 # ----------------------------------------------
-c
+
 library(ggplot2)
 library(RColorBrewer) 
 

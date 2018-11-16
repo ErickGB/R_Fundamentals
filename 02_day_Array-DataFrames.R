@@ -66,7 +66,10 @@ str(personas)
 View(personas)
 
 personas[1, ] # la primera persona del df
-personas[personas$edad > 25, ]
+personas[1, 2] # la primera persona del df
+
+personas[personas$edad > 100, ]
+
 
 # -------------------
 # Sentencias 

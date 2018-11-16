@@ -1,19 +1,17 @@
 # ---------------------------------------------
 # R course - By Erick Gordon
 # ---------------------------------------------
-# Date: 29May2017
+# Date: 
 # Tema 1: Instalacion y fundamentos
 # ---------------------------------------------
 # install libraries
 # ---------------------------------------------
-install.packages("dplyr")
-install.packages("tidyr")
+install.packages("tidyverse")
 install.packages("lubridate")  
-install.packages("ggplot2") 
-
 install.packages("coorplot")
 install.packages("GGally")
 install.packages("RColorBrewer") 
+install.packages("bookdown")
 
 # ---------------------------------------------
 # fundamentals
@@ -75,7 +73,8 @@ a <- "Hola Mundo!"
 a
 
 a <- factor("Hola Mundo!")
-a
+b <- as.factor(c("A", "B", "C", "A"))
+b
 
 a <- "Hola Mundo!"
 nchar(a)
@@ -142,7 +141,11 @@ factor(nombres)
 nombres[2]
 # presenta los dos primeros nombres
 nombres[1:2] # de la posición 1 a la 2
-nombres[c(1, 4)] # la posición 1 y la 4 del vector 
+nombres[c(1, 4)] # la posición 1 y la 4 del vector
+
+
+
+
 # -----------------------------------------------
 # Taller 1
 # -----------------------------------------------

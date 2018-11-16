@@ -4,8 +4,7 @@
 # Date: 29Abr2017
 # Tema 2: Carga y manipulacion de datos
 # ----------------------------------------------
-library(dplyr)
-library(tidyr)
+library(tidyverse)
 # ----------------------------------------------
 # carga de archivo
 data <- read.csv("./Data/2015.csv", 
@@ -17,8 +16,8 @@ View(data)
 # ----------------------------------------------
 #
 # operadores lógicos 
-# &   (and - y)
-# |   (or - o)
+# &   (y)
+# |   (o)
 # ==  (igual a)
 # !=  (distinto de)
 # ----------------------------------------------
@@ -61,7 +60,7 @@ data %>%
 # mutate: Transforma una variable en otra agregandola al data.frame actual
 data %>%
   mutate(se = Standard.Error * 100) %>%
-  top_n(10)
+  top_n(10, wt = se)
 
 # transmute: transforma a una nueva estructura, la anterior desaparece
 data %>%
