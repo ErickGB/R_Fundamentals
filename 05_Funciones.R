@@ -17,7 +17,7 @@ summary_col_by_group <- function(data, ..., col, alpha = 0.05) {
 			      SD   = sd( !! col_var, na.rm = TRUE), 
 			      Q1   = quantile(!! col_var, probs = c(0.25), na.rm = TRUE),
             Mean = mean(!! col_var, na.rm = TRUE), Median=median(!! col_var, na.rm = TRUE), 
-			      Skewed = skewness(!! col_var, na.rm = TRUE), 
+			      #Skewed = skewness(!! col_var, na.rm = TRUE), 
 			      Q3   = quantile(!! col_var, probs = c(0.75), na.rm = TRUE),
 			      IQR  = IQR(!! col_var, na.rm = TRUE),
 			      SE   = Mean/sqrt(Count), 
@@ -31,3 +31,4 @@ summary_col_by_group <- function(data, ..., col, alpha = 0.05) {
 	
 	return(ret) 
 }
+

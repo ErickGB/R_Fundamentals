@@ -93,7 +93,7 @@ nchar(a)
 nchar(1)
 nchar(234)
 
-paste(a, ".. R Panama")
+paste(a, ".. R Panama", "viva")
 paste0(a, ".. R Panama")
 
 substr(a, 1, 4)

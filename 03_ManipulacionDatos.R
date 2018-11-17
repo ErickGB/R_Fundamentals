@@ -7,6 +7,7 @@
 library(tidyverse)
 # **********************************************
 # carga de archivo
+getwd()
 data <- read.csv("./Data/2015.csv", 
                  header = TRUE, 
                  stringsAsFactors = FALSE)
@@ -33,6 +34,16 @@ data %>%
 # ********************
 # filter : filtra los registros según las condiciones indicadas
 # el país más feliz  
+data %>%
+#filter(Region == "Latin America and Caribbean")%>%
+group_by(Region)%>%select(Region, Happiness.Score)%>%
+summarize(
+Media= mean(Happiness.Score),
+Minimo= min(Happiness.Score),
+Maximo= max(Happiness.Score),
+Desviacion =sd(Happiness.Score))%>%
+arrange(desc(Media))
+
 data %>%
   filter(Happiness.Rank == min(data$Happiness.Rank))
 # el menos feliz 
@@ -98,4 +109,36 @@ data %>%
 data %>%
   sample_frac(0.10)
 
+
+
+
+maximo_region <- function(region) {
+  pais <- data %>% 
+    filter(Region == region) %>% 
+    filter(Happiness.Score == max(Happiness.Score)) %>% 
+    select(Country)
+  return(pais$Country[1])
+  }
+
+maximo_region("Western Europe")
+maximo_region("Southern Asia")
+
+
+resumen <- data %>% 
+  summary_col_by_group(Region, col = Happiness.Score)
+
+
+
+
+
+    data %>% 
+    filter(Region == "Western Europe") %>% 
+    filter(Happiness.Score == max(Happiness.Score)) %>% 
+    select(Country) %>% 
+      bind_rows(
+          data %>% 
+    filter(Region == "Southern Asia") %>% 
+    filter(Happiness.Score == max(Happiness.Score)) %>% 
+    select(Country)
+      )
 

@@ -9,7 +9,7 @@
 # arreglos ----
 # todos del mismo tipo de datos, con hasta dos dimensiones (vectores)
 
-misDatos <- c(12, 10, 7, *3, 0, 11) # vector
+misDatos <- c(12, 10, 7, -3, 0, 11) # vector
 x <- array(misDatos, dim = c(3,2))
 x 
 x[1, ] # selecciono la fila 1
@@ -18,7 +18,8 @@ x[2, 2] # selecciono la celda ubicada en la fila 1 columna 3
 
 x > 10 # cuales valores del arreglo que son mayores de 10
 x[x>10] # filtra los valores de la lista mayores a 10
-x[1:2,]
+x[,2] > 10
+x[, ]
 # operadores lógicos 
 # == igual
 # != distinto
@@ -30,7 +31,7 @@ x[1:2,]
 # *******************
 # matriz ----
 # todos del mismo tipo de datos, con una  MAS de dos dimensiones (vectores)
-misDatos <- c(12, 10, 7, *3, 0, 11, *7, 7, 8)
+misDatos <- c(12, 10, 7, -3, 0, 11, -7, 7, 8)
 x <- matrix(misDatos, nrow = 3, ncol = 3)
 x
 
@@ -70,7 +71,10 @@ personas[1, 2] # la primera persona del df
 
 personas[personas$edad > 100, ]
 
-
+personas$salario <- c(1500, 2000, 800)
+personas$deducciones <- c(500, 500, 500)
+personas$comprometido <- personas$deducciones/personas$salario *100
+personas
 # *******************
 # Sentencias 
 # if, else, ifelse
@@ -158,7 +162,7 @@ sd(x) # desviacion estándar
 summary(x)
 
 my_function <- function (cadena) {
-  return (paste0("Hola ", upper(cadena)))
+  return (paste0("Hola ", toupper(cadena)))
 }
 
 my_function("Erick")
@@ -185,7 +189,7 @@ tolower(cadena) # a minisucula
 # ***********************************************
 
 # Dado 
-misDatos <- c(12, 10, 7, *3, 0, 11)
+misDatos <- c(12, 10, 7, -3, 0, 11)
 x <- array(misDatos, dim = c(3,2))
 
 # 1. Genere la condición que haga que se impriman solo los numeros menores o iguales a cero.

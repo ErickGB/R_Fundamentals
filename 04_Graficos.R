@@ -46,7 +46,7 @@ ggplot(temp, aes(x=factor(Region), y=Happiness.Score, fill=Region)) +
 # cambia colores 
 ggplot(temp, aes(x=factor(Region), y=Happiness.Score, fill=Region)) + 
   geom_bar(stat = "identity") + coord_flip() + 
-  scale_fill_brewer(palette = "RdBu")
+  scale_fill_brewer(palette = "Pastel1")
 
 temp$Region <- factor(temp$Region, c("Australia and New Zealand", "North America", 
                         "Western Europe", "Latin America and Caribbean", 
