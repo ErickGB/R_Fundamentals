@@ -1,11 +1,11 @@
-# ---------------------------------------------
+# ************************************************
 # R course - By Erick Gordon
-# ---------------------------------------------
+# ************************************************
 # Date: 
 # Tema 1: Instalacion y fundamentos
-# ---------------------------------------------
+# ************************************************
 # install libraries
-# ---------------------------------------------
+# ************************************************
 install.packages("tidyverse")
 install.packages("lubridate")  
 install.packages("coorplot")
@@ -13,12 +13,22 @@ install.packages("GGally")
 install.packages("RColorBrewer") 
 install.packages("bookdown")
 
-# ---------------------------------------------
-# fundamentals
-# ---------------------------------------------
+# ************************************************
+# Fundamentos
+# ************************************************
+# carga de librerias 
+library(tidyverse) 
 
-# -----------
-# 1. Operaciones matemáticas
+# **************************
+# comandos 
+ls()       # lista los objetos del espacio de trabjao 
+getwd()    # ubicación actual 
+# setwd(getwd())  # asigna nueva ubicación 
+# rm # remueve objetos de memoria 
+gc() # garbage collector, limpia la memoria. 
+
+# **************************
+# 1. operaciones matemáticas ----
 1 + 1
 
 20 * 10 
@@ -31,8 +41,8 @@ install.packages("bookdown")
 
 5 ^ 2
 
-# -----------
-# 2. Asignación de variables
+# ************************
+# 2. asignación de variables ----
 
 x <- 2
 y = 3
@@ -41,12 +51,12 @@ x
 y
 
 x * y
-# -----------
-# 3. remover una variable 
+# ************************
+# 3. remover una variable ----
 rm(y)
 y
-# -----------
-# 5. tipos de datos
+# ************************
+# 4. tipos de datos ----
 # integer: entero
 # numeric: decimales y flotantes
 # character: cadenas de caracters (nombres)
@@ -66,12 +76,12 @@ class(10L*2L)
 
 class(10L/2L)
 
-# -----------
-# 3. character
 
+# caracteres
 a <- "Hola Mundo!"
 a
 
+# factor
 a <- factor("Hola Mundo!")
 b <- as.factor(c("A", "B", "C", "A"))
 b
@@ -83,7 +93,12 @@ nchar(a)
 nchar(1)
 nchar(234)
 
-# -----------
+paste(a, ".. R Panama")
+paste0(a, ".. R Panama")
+
+substr(a, 1, 4)
+substr(a, 6, 10)
+# **********
 # 4. Fechas
 
 date1 <- as.Date(" 2012-06-28")
@@ -94,7 +109,7 @@ date2 <- as.POSIXct(" 2012-06-28 17: 42")
 date2
 class(date2)
 
-# -----------
+# **********
 # 4. Logicos
 
 2 == 3
@@ -104,7 +119,7 @@ class(date2)
 2 > 3 
 "data" == "state"
 "data" == "data"
-# -----------
+# **********
 # 4. Operaciones con vector
 
 x <- c(2, 50, 3, 9, 11, 20, 31, 45, -1, 0, 16)
@@ -121,6 +136,7 @@ y <- -5:10
 y
 
 x + y
+# sin son de diferentes longitudes genera un error.
 
 # verifica la longitud
 length(x)
@@ -131,6 +147,7 @@ y > x
 nombres <- c("maria", "jose", "abril", "nickole")
 nombres
 length(nombres)
+nchar(nombres)
 
 nombres <- c("maria", "jose", "abril", 
              "nickole", "jose")
@@ -146,9 +163,9 @@ nombres[c(1, 4)] # la posición 1 y la 4 del vector
 
 
 
-# -----------------------------------------------
-# Taller 1
-# -----------------------------------------------
+# ************************************************--
+# Taller 1 ----
+# ************************************************--
 
 # 1. Cual es el resultado de la operación siguiente
 7 + 2 * 2 - 2 

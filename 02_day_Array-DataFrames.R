@@ -1,15 +1,15 @@
-# ----------------------------------------------
-# R course - By Erick Gordon
-# ----------------------------------------------
+# **********************************************
+# R course * By Erick Gordon
+# **********************************************
 # Date: 29May2017
 # Tema 2: Arreglo, Matrices, Listas y DataFrames
-# ----------------------------------------------
+# **********************************************
 
-# -------------------
-# arreglos
+# *******************
+# arreglos ----
 # todos del mismo tipo de datos, con hasta dos dimensiones (vectores)
 
-misDatos <- c(12, 10, 7, -3, 0, 11) # vector
+misDatos <- c(12, 10, 7, *3, 0, 11) # vector
 x <- array(misDatos, dim = c(3,2))
 x 
 x[1, ] # selecciono la fila 1
@@ -20,25 +20,25 @@ x > 10 # cuales valores del arreglo que son mayores de 10
 x[x>10] # filtra los valores de la lista mayores a 10
 x[1:2,]
 # operadores lógicos 
-== igual
-!= distinto
-< menor que 
-> mayor que
-<= menor o igual que
->= mayor o igual que 
+# == igual
+# != distinto
+# < menor que 
+# > mayor que
+# <= menor o igual que
+# >= mayor o igual que 
 
-# -------------------
-# matriz
+# *******************
+# matriz ----
 # todos del mismo tipo de datos, con una  MAS de dos dimensiones (vectores)
-misDatos <- c(12, 10, 7, -3, 0, 11, -7, 7, 8)
+misDatos <- c(12, 10, 7, *3, 0, 11, *7, 7, 8)
 x <- matrix(misDatos, nrow = 3, ncol = 3)
 x
 
 x[2:3, ] # selecciono las filas de la 2 a la 3 con todas las columnas
 x[2:3, 1] # selecciono las filas de la 2 a la 3 pero solo la columna 1
 
-# -------------------
-# listas
+# *******************
+# listas ----
 # pueden contener dos o más tipos de datos diferentes
 persona <- list("Maria", 1995L)
 persona[1]
@@ -51,8 +51,8 @@ persona$anio
 persona$edad <- 22
 persona
 
-# -------------------
-# DataFrames
+# *******************
+# dataFrames ----
 # es como tener listas ordenadas en filas y columnas
 nombres <- c("Maria", "Juan", "Diana")
 edades <- c(22, 19, 27)
@@ -71,10 +71,10 @@ personas[1, 2] # la primera persona del df
 personas[personas$edad > 100, ]
 
 
-# -------------------
+# *******************
 # Sentencias 
 # if, else, ifelse
-# condiciones combinadas - and | or 
+# condiciones combinadas * and | or 
 # for
 # while
 
@@ -97,7 +97,7 @@ if(x > 20) {
   x <- x + 100
   print(x)
 } else {
-  x <- x - 1
+  x <- x * 1
   print(x)
 }
 
@@ -116,7 +116,7 @@ if(x > 20 | z < 5) { # o
   print("no se cumple la condición")
 }
 
-# --------------------
+# ********************
 # ciclos 
 
 # for
@@ -148,7 +148,7 @@ while(i < 100)
 }
 
 
-# --------------------
+# ********************
 # funciones
 x <- c(1, 7, 9, 0, 11, 41, 12)
 mean(x) # media
@@ -157,12 +157,12 @@ sd(x) # desviacion estándar
 
 summary(x)
 
-myFuncion <- function (cadena) {
-  return (paste0("Hola ", cadena))
+my_function <- function (cadena) {
+  return (paste0("Hola ", upper(cadena)))
 }
 
-myFuncion("Erick")
-myFuncion("Again!")
+my_function("Erick")
+my_function("Again!")
 
 # cadena de caracteres
 cadena <- "R es sin duda es uno de los más útiles a la hora de estructurar y manipular datos"
@@ -180,12 +180,12 @@ tolower(cadena) # a minisucula
 
 
 
-# -----------------------------------------------
+# ***********************************************
 # Taller 2
-# -----------------------------------------------
+# ***********************************************
 
 # Dado 
-misDatos <- c(12, 10, 7, -3, 0, 11)
+misDatos <- c(12, 10, 7, *3, 0, 11)
 x <- array(misDatos, dim = c(3,2))
 
 # 1. Genere la condición que haga que se impriman solo los numeros menores o iguales a cero.

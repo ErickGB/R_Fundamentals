@@ -1,23 +1,23 @@
-# ----------------------------------------------
+# **********************************************
 # R course - By Erick Gordon
-# ----------------------------------------------
+# **********************************************
 # Date: 02May2017
 # Tema 3: Carga y manipulacion de datos
-# ----------------------------------------------
+# **********************************************
 
 library(ggplot2)
 library(RColorBrewer) 
 
 library(corrplot)
 library(GGally)
-# ----------------------------------------------
+# **********************************************
 # carga de datos
 data <- read.csv("2015.csv", 
                  header = TRUE, 
                  stringsAsFactors = FALSE)
 str(data)
 head(data, 10)
-# ----------------------------------------------
+# **********************************************
 
 # bar plot
 ggplot(data, aes(x=Region, y=Happiness.Score)) + 
@@ -73,7 +73,7 @@ ggplot(temp, aes(x=factor(Region), y=Happiness.Score, fill=Region)) +
   labs(fill="Regiones según la OCDE") + 
   guides(fill=guide_legend(reverse = TRUE))
 
-# -----------------------------------------------------------------
+# ****************************************************************-
 # scatter plot 
 str(data)
 # basico 
@@ -94,7 +94,7 @@ ggplot(aes(x=Happiness.Score, y=Health..Life.Expectancy.,
                  colour=Region, size=radio)) + 
   geom_point()
 
-# ----------------------------------------------------
+# ****************************************************
 # box plot:  Muestra la dispersión
 
 ggplot(data, aes(x=factor(Region), y = Happiness.Score, fill=Region)) + 
@@ -113,7 +113,7 @@ ggplot(data, aes(x=factor(Region), y = Happiness.Score, fill=Region)) +
 
 display.brewer.all()
 
-# ----------------------------------------------------
+# ****************************************************
 # face grid : vertical sub panels
 # face wrap como palabras de una hoja
 
@@ -127,7 +127,7 @@ ggplot( aes(x=factor(Country), y=Happiness.Score, fill=Country)) +
   facet_grid(Region ~ .)
 
 
-# ----------------------------------------------------
+# ****************************************************
 # coorrelation
 corrplot.mixed(cor(data[4:12]))
 

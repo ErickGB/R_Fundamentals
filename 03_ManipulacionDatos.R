@@ -1,11 +1,11 @@
-# ----------------------------------------------
+# **********************************************
 # R course - By Erick Gordon
-# ----------------------------------------------
+# **********************************************
 # Date: 29Abr2017
 # Tema 2: Carga y manipulacion de datos
-# ----------------------------------------------
+# **********************************************
 library(tidyverse)
-# ----------------------------------------------
+# **********************************************
 # carga de archivo
 data <- read.csv("./Data/2015.csv", 
                  header = TRUE, 
@@ -13,14 +13,14 @@ data <- read.csv("./Data/2015.csv",
 str(data)
 head(data, 10)
 View(data)
-# ----------------------------------------------
+# **********************************************
 #
 # operadores lógicos 
 # &   (y)
 # |   (o)
 # ==  (igual a)
 # !=  (distinto de)
-# ----------------------------------------------
+# **********************************************
 #
 # dplyr library
 
@@ -30,7 +30,7 @@ data[1:10, ]
 data %>%
   top_n(10)
 
-# --------------------
+# ********************
 # filter : filtra los registros según las condiciones indicadas
 # el país más feliz  
 data %>%
@@ -40,7 +40,7 @@ data %>%
   filter(Happiness.Rank == min(data$Happiness.Rank)) %>%
   select(Country, Happiness.Score)
 
-# --------------------
+# ********************
 # arrange : ordena 
 data %>%
   arrange(Happiness.Score) %>%
@@ -50,13 +50,13 @@ data %>%
   arrange(desc(Happiness.Score)) %>%
   select(Country, Happiness.Score)
 
-# --------------------
+# ********************
 # distinct: selecciona valores únicos, es decir si la variable tiene 10 registros pero solo cuatro
 # categorías, listará las 4. 
 data %>%
   distinct(Region)
 
-# --------------------
+# ********************
 # mutate: Transforma una variable en otra agregandola al data.frame actual
 data %>%
   mutate(se = Standard.Error * 100) %>%
@@ -73,7 +73,7 @@ data %>%
   top_n(10)
 
 
-# --------------------
+# ********************
 # sumarize: Suma los valores de una variable
 data %>%
   summarize(Total=n(), Maximo=max(Happiness.Score) )
@@ -88,7 +88,7 @@ data %>%
   summarize(Total=n(), Maximo=max(Happiness.Score) ) %>%
   arrange(desc(Total))
 
-# --------------------
+# ********************
 # sample 
 # muestra aleatoria por cantidad 
 data %>%
