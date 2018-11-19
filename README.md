@@ -1,3 +1,3 @@
-# UP.RCurso
-# MyOff1c3$
+# LogicStudio
+# R Fundamentals
 
