@@ -12,7 +12,8 @@ install.packages("coorplot")
 install.packages("GGally")
 install.packages("RColorBrewer") 
 install.packages("bookdown")
-
+install.packages("DataExplorer")
+install.packages("janitor")
 # ************************************************
 # Fundamentos
 # ************************************************
