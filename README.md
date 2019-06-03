@@ -1,3 +1,2 @@
-# LogicStudio
 # R Fundamentals
 
