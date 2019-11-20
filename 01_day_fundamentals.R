@@ -3,22 +3,7 @@
 # ************************************************
 # Date: 
 # Tema 1: Instalacion y fundamentos
-# ************************************************
-# install libraries
-# ************************************************
-install.packages("tidyverse")
-install.packages("janitor")
-install.packages("DataExplorer")
 
-install.packages("tidyr")
-install.packages("cluster")
-install.packages("Hmisc")
-install.packages("lubridate")  
-install.packages("coorplot")
-install.packages("GGally")
-install.packages("RColorBrewer") 
-install.packages("bookdown")
-install.packages("plotly")
 # ************************************************
 # Fundamentos
 # ************************************************
