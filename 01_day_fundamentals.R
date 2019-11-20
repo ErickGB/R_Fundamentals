@@ -7,13 +7,18 @@
 # install libraries
 # ************************************************
 install.packages("tidyverse")
+install.packages("janitor")
+install.packages("DataExplorer")
+
+install.packages("tidyr")
+install.packages("cluster")
+install.packages("Hmisc")
 install.packages("lubridate")  
 install.packages("coorplot")
 install.packages("GGally")
 install.packages("RColorBrewer") 
 install.packages("bookdown")
-install.packages("DataExplorer")
-install.packages("janitor")
+install.packages("plotly")
 # ************************************************
 # Fundamentos
 # ************************************************
@@ -87,6 +92,10 @@ a <- factor("Hola Mundo!")
 b <- as.factor(c("A", "B", "C", "A"))
 b
 
+lista <- c("A", "B", "C", "A")
+lista
+
+
 a <- "Hola Mundo!"
 nchar(a)
 "Hola Mundo!"
@@ -145,6 +154,8 @@ length(x)
 # comparando vectores
 y > x
 
+
+
 nombres <- c("maria", "jose", "abril", "nickole")
 nombres
 length(nombres)
@@ -158,7 +169,7 @@ factor(nombres)
 # presenta el segundo nombre
 nombres[2]
 # presenta los dos primeros nombres
-nombres[1:2] # de la posición 1 a la 2
+nombres[1:3] # de la posición 1 a la 2
 nombres[c(1, 4)] # la posición 1 y la 4 del vector
 
 

@@ -62,6 +62,9 @@ anios <- c(1995L, 1198L, 1990L)
 personas <- data.frame(nombre=nombres, 
                        edad=edades, 
                        anio=anios)
+
+
+
 personas
 str(personas)
 View(personas)
@@ -69,12 +72,17 @@ View(personas)
 personas[1, ] # la primera persona del df
 personas[1, 2] # la primera persona del df
 
-personas[personas$edad > 100, ]
+personas$nombre
+
+personas2 <-  personas[personas$anio >= 1990L, ]
 
 personas$salario <- c(1500, 2000, 800)
 personas$deducciones <- c(500, 500, 500)
 personas$comprometido <- personas$deducciones/personas$salario *100
 personas
+
+
+
 # *******************
 # Sentencias 
 # if, else, ifelse

@@ -30,18 +30,57 @@ data[1:10, ]
 data %>%
   top_n(10)
 
+
+data %>%
+  glimpse()
+
+datos_2 <-data %>%
+  filter(Region == "Latin America and Caribbean") %>%
+  select(Country, Region, Dystopia.Residual)
+
+data %>%
+  group_by(Region) %>%
+  summarize(
+    media = mean(Happiness.Score), 
+    mediana = median(Happiness.Score),
+    total = n()) %>%
+  arrange(desc(media))
+
+
+maximo_score <- max(data$Happiness.Score)
+maximo_score
+
+data %>% 
+  filter(Happiness.Score == maximo_score)
+
+
+data %>% 
+  filter(Happiness.Score == max(Happiness.Score))
+
+
+
+
+
 # ********************
 # filter : filtra los registros según las condiciones indicadas
 # el país más feliz  
-data %>%
-#filter(Region == "Latin America and Caribbean")%>%
-group_by(Region)%>%select(Region, Happiness.Score)%>%
+datos2 <- data %>%
+filter(Region == "Latin America and Caribbean" & Country == "Panama") %>%
+group_by(Region, Country) %>%
 summarize(
 Media= mean(Happiness.Score),
 Minimo= min(Happiness.Score),
 Maximo= max(Happiness.Score),
 Desviacion =sd(Happiness.Score))%>%
 arrange(desc(Media))
+
+print("mi salida ... ")
+
+write.csv(datos2, "./Data/salida.csv")
+
+
+
+
 
 data %>%
   filter(Happiness.Rank == min(data$Happiness.Rank))
@@ -69,8 +108,15 @@ data %>%
 # ********************
 # mutate: Transforma una variable en otra agregandola al data.frame actual
 data %>%
-  mutate(se = Standard.Error * 100) %>%
+  mutate(se = Standard.Error * 100, otra = 'constante') %>%
   top_n(10, wt = se)
+
+data %>%
+  mutate(condicion = ifelse(Standard.Error > 0.05, 'mayor', 'menor')) %>%
+  mutate(texto = paste(Region, Country, sep = "-")) %>%
+  filter(Standard.Error  > 0.048 ) %>%
+  head(10) %>%
+  select(texto, Standard.Error, condicion)
 
 # transmute: transforma a una nueva estructura, la anterior desaparece
 data %>%
@@ -127,9 +173,6 @@ resumen <- data %>%
   summary_col_by_group(Region, col = Happiness.Score)
 
 
-
-
-
     data %>% 
     filter(Region == "Western Europe") %>% 
     filter(Happiness.Score == max(Happiness.Score)) %>% 
@@ -141,3 +184,30 @@ resumen <- data %>%
     select(Country)
       )
 
+    
+    
+
+    data_2016 <- read.csv("./Data/2016.csv", 
+                     header = TRUE, 
+                     stringsAsFactors = FALSE)   
+    head(data_2016)
+    
+    temp_2015 <-  data %>%
+      mutate(year = 2015) %>%
+      select(Region, Country, Happiness.Rank, Happiness.Score, year)
+    
+    temp_2016 <-  data_2016 %>%
+      mutate(year = 2016) %>%
+      select(Region, Country, Happiness.Rank, Happiness.Score, year)
+    
+    temp_total <- rbind(temp_2015, temp_2016)
+    
+    ?top_n()
+    
+    table(temp_total$year)
+    
+    temp_total %>%
+      count(year)
+    
+    
+    
