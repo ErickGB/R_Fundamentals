@@ -41,7 +41,9 @@ write.csv(customerTrends, "./Data/out_customers.csv")
 
 
 
-
+s = sort(rexp(100))
+range01 <- function(x){(x-min(x))/(max(x)-min(x))}
+range01(s)
 
 
 
