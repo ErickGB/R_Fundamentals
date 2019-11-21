@@ -3,44 +3,49 @@
 library(tidyverse) 
 # *********************************************************************
 
-data_tbl <- read.csv("./Data/airline_delay_2016_08.csv", header = TRUE)
+# carga datos
+data_tbl <- read.csv("./Data/vuelos.csv", header = TRUE) # **** cambiar a otro archivo
 
-data_tbl <- data_tbl 
-
-
-
+# estructura de datos del archivo cargado
 data_tbl %>% 
   glimpse()
 
+# limpia los nombres
 data_tbl <- data_tbl %>% 
   janitor::clean_names()
 
+# estructura de datos, verificando los cambios de nombres.
+data_tbl %>% 
+  glimpse()
 
-data_tbl <- data_tbl%>% 
-  head(20000)
-
-
+# selecciona 3 columnas y las asigna a un nuevo data.frame ***
 train_tbl <- data_tbl %>% 
   select(distance, arr_delay, dep_delay) 
 
+# estandariza los datos (desviaciones estánderes)
 train_tbl <- scale(train_tbl)
 train_tbl <- as_tibble(train_tbl)
 
+# revisamos los nulos
 train_tbl %>% 
   DataExplorer::plot_missing()
 
-
+# eliminamos los nulos (son pocos). ****
 train_tbl <- train_tbl %>% 
   filter(is.na(dep_delay) == FALSE) %>% 
   filter(is.na(arr_delay) == FALSE) 
+
+
+# *** estos pasos son los únicos que deben cambiar para generar nuevos análisis
+
+
 
 #*****************************************
 ## Initial Cluster analysis (k selection) ----
 #*****************************************
 set.seed(7777)
 
-#Exploratory for find the best numbers of groups (k) 
-# Setup for k-means loop 
+# Explora para establecer el número de "k" potenciales
 km_out <- list()
 sil_out <- list()
 x <- vector()
@@ -48,19 +53,18 @@ y <- vector()
 min_clust <- 2      # Hypothesized minimum number of segments
 max_clust <- 20    # Hypothesized maximum number of segments
 
-# Compute k-means clustering over various clusters, k, from minClust to maxClust
+# calcula los k means desde min_clust hasta max_clust
 for (centr in min_clust:max_clust) {
-        i <- centr-(min_clust-1) # relevels start as 1, and increases with centr
-        #set.seed(777) # For reproducibility
+        i <- centr-(min_clust-1) 
         km_out[i] <- list(kmeans(train_tbl, centers = centr, iter.max=1000, nstart=1))
         sil_out[i] <- list(cluster::silhouette(km_out[[i]][[1]], dist(train_tbl)))
-        # Used for plotting silhouette average widths
+        # Para generar el plot 
         x[i] = centr  # value of k
         y[i] = summary(sil_out[[i]])[[4]]  # Silhouette average width
 }
 
 
-# Plot silhouette results to find best number of clusters; closer to 1 is better
+# Plot silhouette 
 ggplot(data = data.frame(x, y), aes(x, y)) + 
   geom_point(size=3) + 
   geom_line() +
@@ -71,18 +75,21 @@ ggplot(data = data.frame(x, y), aes(x, y)) +
 data.frame(x, y) %>% 
 	arrange(desc(y))
 
-
-base_centers <- 3
+# ***************************
+# Genera el cluster fiinal, 
+base_centers <- 3 # ¿Cuántos clústers deseas crear?
 k_model <- eclust(train_tbl, "kmeans", k = base_centers,
                  nstart = 2, graph = FALSE)
 
+# visualiza el silhouette de cada clúster
 library(factoextra)
 fviz_silhouette(k_model)
 
-# Visualize k-means clusters
+# otra visualización
 fviz_cluster(k_model, geom = "point",  ellipse = FALSE)
 
 # ************************
+# visualización en 3D usando Plotly (otra librería)
 library(plotly)
 train_tbl$cluster <- k_model$cluster
 p <- plot_ly(train_tbl, x = ~arr_delay, y = ~dep_delay, z = ~distance,
@@ -103,7 +110,7 @@ p
 
 
 # ************************************
-# Arbol de decisión
+# Árbol de decisión
 
 data_tbl$cluster <- k_model$cluster
 set.seed(1234) # For reproducibility
