@@ -5,6 +5,10 @@ library(tidyverse)
 
 data_tbl <- read.csv("./Data/airline_delay_2016_08.csv", header = TRUE)
 
+data_tbl <- data_tbl 
+
+
+
 data_tbl %>% 
   glimpse()
 
@@ -60,7 +64,7 @@ for (centr in min_clust:max_clust) {
 ggplot(data = data.frame(x, y), aes(x, y)) + 
   geom_point(size=3) + 
   geom_line() +
-  xlab("Number of Cluster Centers") +
+  xlab("Número de clústers") +
   ylab("Silhouette Average Width") +
   ggtitle("Silhouette Average Width as Cluster Center Varies")
 
