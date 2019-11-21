@@ -1,6 +1,10 @@
 # *********************************************************************
 # carga librerias ----
 library(tidyverse) 
+library(factoextra)
+library(C50)
+
+library(plotly)
 # *********************************************************************
 
 # carga datos
@@ -82,7 +86,6 @@ k_model <- eclust(train_tbl, "kmeans", k = base_centers,
                  nstart = 2, graph = FALSE)
 
 # visualiza el silhouette de cada clúster
-library(factoextra)
 fviz_silhouette(k_model)
 
 # otra visualización
@@ -90,7 +93,6 @@ fviz_cluster(k_model, geom = "point",  ellipse = FALSE)
 
 # ************************
 # visualización en 3D usando Plotly (otra librería)
-library(plotly)
 train_tbl$cluster <- k_model$cluster
 p <- plot_ly(train_tbl, x = ~arr_delay, y = ~dep_delay, z = ~distance,
         marker = list(color = ~cluster, colorscale = c('#FFE1A1', '#683531'), showscale = TRUE)) %>%
@@ -112,12 +114,20 @@ p
 # ************************************
 # Árbol de decisión
 
+# Ya que eliminamos los registros nulos en la tabla "train_tbl" debemos hacer lo mismo con la de datos (lo no estándarizados)
+data_tbl <- data_tbl %>% 
+  filter(is.na(dep_delay) == FALSE) %>% 
+  filter(is.na(arr_delay) == FALSE) 
+
+# Pasamos el identificador del clúster a los datos no estandarizados
 data_tbl$cluster <- k_model$cluster
 set.seed(1234) # For reproducibility
 tree_model <- C50::C5.0(data_tbl %>% select(arr_delay, dep_delay, distance), 
 	as.factor(data_tbl$cluster),
 	control = C50::C5.0Control(winnow = FALSE, minCases = 50))
 summary(tree_model)
+plot(tree_model)
+
 
 
 
